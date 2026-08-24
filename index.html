@@ -1,217 +1,280 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Land of Dawn News - Portal Berita Mobile Legends</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Shopee Clone - Jual Beli Online Terlengkap & Terpercaya</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+        body { font-family: 'Roboto', sans-serif; }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col">
+<body class="bg-gray-100 text-gray-800 min-h-screen flex flex-col">
 
-    <!-- Top Bar: Tournaments & Patch Ticker -->
-    <div class="bg-slate-900 border-b border-slate-800 text-xs py-2 px-4 overflow-x-auto whitespace-nowrap">
-        <div class="max-w-7xl mx-auto flex items-center space-x-6 text-slate-300">
-            <span class="font-bold text-cyan-400 flex items-center gap-1">
-                <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span> MPL RESULT
-            </span>
-            <span>ONIC <strong class="text-white">2 - 1</strong> RRQ (MATCH 3)</span>
-            <span class="text-slate-700">|</span>
-            <span>EVOS <strong class="text-white">2 - 0</strong> BTR (FT)</span>
-            <span class="text-slate-700">|</span>
-            <span class="font-bold text-amber-400">PATCH NOTE 1.9.88 LIVE</span>
-        </div>
-    </div>
-
-    <!-- Header Navigation -->
-    <header class="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <!-- Logo -->
-                <div class="flex items-center space-x-2">
-                    <div class="bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 p-2 rounded-xl font-black text-xl tracking-wider">
-                        ML
-                    </div>
-                    <span class="text-xl font-extrabold tracking-tight">DAWN<span class="text-cyan-400">NEWS</span></span>
-                </div>
-
-                <!-- Desktop Nav -->
-                <nav class="hidden md:flex space-x-8 text-sm font-semibold text-slate-300">
-                    <a href="#" class="text-cyan-400 hover:text-cyan-300 transition">Beranda</a>
-                    <a href="topup.html" class="hover:text-cyan-400 transition">Top UP</a>
-                    <a href="live.html" class="hover:text-cyan-400 transition">Streaming</a>
-                    <a href="#" class="hover:text-cyan-400 transition">Hero & Build</a>
-                    <a href="#" class="hover:text-cyan-400 transition">Rumor Transfer</a>
-                </nav>
-
-                <!-- Search & Action -->
-                <div class="flex items-center space-x-4">
-                    <button class="p-2 text-slate-400 hover:text-white transition">
-                        <i data-lucide="search" class="w-5 h-5"></i>
-                    </button>
-                    <a href="#tierlist" class="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold px-4 py-2 rounded-lg text-sm transition">
-                        Tier List Meta
-                    </a>
-                </div>
+    <!-- Top Bar Navigation -->
+    <header class="bg-gradient-to-b from-orange-600 to-orange-500 text-white sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 py-1 flex justify-between text-xs border-b border-orange-400/40">
+            <div class="flex space-x-4">
+                <a href="#" class="hover:opacity-80">Seller Centre</a>
+                <span>|</span>
+                <a href="#" class="hover:opacity-80">Download Aplikasi</a>
+                <span>|</span>
+                <a href="#" class="hover:opacity-80">Ikuti Kami di Sosmed</a>
             </div>
+            <div class="flex space-x-4">
+                <a href="#" class="hover:opacity-80 flex items-center gap-1"><i data-lucide="bell" class="w-3.5 h-3.5"></i> Notifikasi</a>
+                <a href="#" class="hover:opacity-80 flex items-center gap-1"><i data-lucide="help-circle" class="w-3.5 h-3.5"></i> Bantuan</a>
+                <a href="#" class="font-bold hover:opacity-80">AkunSaya</a>
+            </div>
+        </div>
+
+        <!-- Main Search Bar Header -->
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-6">
+            <a href="index.html" class="flex items-center gap-2 text-2xl font-black tracking-tighter">
+                <i data-lucide="shopping-bag" class="w-8 h-8"></i>
+                <span>Shopee</span>
+            </a>
+
+            <!-- Search Form -->
+            <form action="kategori.html" class="flex-grow max-w-2xl flex bg-white rounded-sm overflow-hidden p-1 shadow">
+                <input type="text" placeholder="Garansi Bebas Pengembalian - Cari sepatu, baju, elektronik..." class="w-full px-3 py-1.5 text-sm text-gray-800 focus:outline-none">
+                <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-1.5 rounded-sm">
+                    <i data-lucide="search" class="w-4 h-4"></i>
+                </button>
+            </form>
+
+            <!-- Shopping Cart Icon -->
+            <a href="keranjang.html" class="relative p-2 hover:opacity-90">
+                <i data-lucide="shopping-cart" class="w-7 h-7"></i>
+                <span class="absolute top-0 right-0 bg-white text-orange-600 text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center border border-orange-500">3</span>
+            </a>
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full space-y-12">
+    <!-- Content Area -->
+    <main class="max-w-7xl mx-auto px-4 py-6 w-full space-y-6 flex-grow">
         
-        <!-- Hero Section: Featured MLBB News -->
-        <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <!-- Main Featured Card -->
-            <div class="lg:col-span-2 relative group overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 min-h-[420px] flex flex-col justify-end p-6 md:p-8">
-                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=80" 
-                     alt="Esports Arena" 
-                     class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-30">
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent"></div>
-                
-                <div class="relative z-10 space-y-3">
-                    <span class="bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                        MPL Season Utama
-                    </span>
-                    <h1 class="text-2xl md:text-4xl font-extrabold text-white leading-tight group-hover:text-cyan-300 transition">
-                        Royal Derby Memanas: Taktik Pick-Off Bawa Victory di Game Penentu!
-                    </h1>
-                    <p class="text-slate-300 text-sm md:text-base line-clamp-2">
-                        Perebutan posisi puncak klasemen makin ketat. Penggunaan hero Assassin di Lord area jadi penentu eksekusi strategi sang juara.
-                    </p>
-                    <div class="flex items-center text-xs text-slate-400 space-x-4 pt-2">
-                        <span>1 Jam lalu</span>
-                        <span>•</span>
-                        <span>Oleh Analis MLBB</span>
-                    </div>
+        <!-- Hero Banners -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <div class="md:col-span-2 bg-orange-200 rounded-sm overflow-hidden h-60 relative group">
+                <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/20 flex items-end p-6 text-white font-bold text-2xl">
+                    PROMO PUNCAK 9.9 - DISKON HINGGA 90%
                 </div>
             </div>
-
-            <!-- Secondary Featured Cards -->
-            <div class="space-y-6 flex flex-col justify-between">
-                <!-- Sub Card 1 -->
-                <div class="relative group overflow-hidden rounded-xl border border-slate-800 bg-slate-900 h-[200px] flex flex-col justify-end p-5">
-                    <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=600&q=80" 
-                         alt="Gaming Setup" 
-                         class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-20">
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent"></div>
-                    <div class="relative z-10 space-y-1">
-                        <span class="text-xs font-bold text-amber-400 uppercase">Patch Analysis</span>
-                        <h2 class="text-base font-bold text-white group-hover:text-cyan-300 transition line-clamp-2">
-                            Buff Besar Hero Marksman: Meta Gold Lane Diprediksi Berubah Total
-                        </h2>
-                    </div>
+            <div class="space-y-3 flex flex-col justify-between">
+                <div class="h-28 bg-blue-100 rounded-sm overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover">
                 </div>
-
-                <!-- Sub Card 2 -->
-                <div class="relative group overflow-hidden rounded-xl border border-slate-800 bg-slate-900 h-[200px] flex flex-col justify-end p-5">
-                    <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=600&q=80" 
-                         alt="Cyberpunk Vibe" 
-                         class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-20">
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent"></div>
-                    <div class="relative z-10 space-y-1">
-                        <span class="text-xs font-bold text-purple-400 uppercase">Skin & Event</span>
-                        <h2 class="text-base font-bold text-white group-hover:text-cyan-300 transition line-clamp-2">
-                            Bocoran Skin Collector Bulan Depan & Cara Hemat Gacha Resmi
-                        </h2>
-                    </div>
+                <div class="h-28 bg-purple-100 rounded-sm overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover">
                 </div>
+            </div>
+        </div>
+
+        <!-- Flash Sale Section -->
+        <section class="bg-white rounded-sm p-4 shadow-sm space-y-4">
+            <div class="flex items-center justify-between border-b pb-3">
+                <div class="flex items-center gap-3">
+                    <h2 class="text-xl font-black text-orange-600 italic tracking-wider flex items-center gap-1">
+                        <i data-lucide="zap" class="fill-orange-600"></i> FLASH SALE
+                    </h2>
+                    <div class="bg-black text-white text-xs font-bold px-2 py-1 rounded">02 : 14 : 45</div>
+                </div>
+                <a href="kategori.html" class="text-sm font-semibold text-orange-500 hover:underline">Lihat Semua ></a>
+            </div>
+
+            <!-- Flash Sale Cards -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+                <!-- Item 1 -->
+                <a href="produk.html" class="group border border-transparent hover:border-orange-500 transition rounded-sm p-2 bg-white flex flex-col">
+                    <div class="relative aspect-square bg-gray-100 mb-2 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover group-hover:scale-105 transition">
+                        <span class="absolute top-0 right-0 bg-yellow-400 text-orange-700 font-bold text-[10px] px-1.5 py-0.5">DISKON 50%</span>
+                    </div>
+                    <div class="text-orange-600 font-bold text-base">Rp 149.000</div>
+                    <div class="w-full bg-orange-100 h-3 rounded-full overflow-hidden mt-2 relative">
+                        <div class="bg-orange-500 h-full w-3/4"></div>
+                        <span class="absolute inset-0 text-[9px] text-white font-bold flex items-center justify-center">80% TERJUAL</span>
+                    </div>
+                </a>
+                
+                <!-- Item 2 -->
+                <a href="produk.html" class="group border border-transparent hover:border-orange-500 transition rounded-sm p-2 bg-white flex flex-col">
+                    <div class="relative aspect-square bg-gray-100 mb-2 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover group-hover:scale-105 transition">
+                        <span class="absolute top-0 right-0 bg-yellow-400 text-orange-700 font-bold text-[10px] px-1.5 py-0.5">DISKON 35%</span>
+                    </div>
+                    <div class="text-orange-600 font-bold text-base">Rp 299.000</div>
+                    <div class="w-full bg-orange-100 h-3 rounded-full overflow-hidden mt-2 relative">
+                        <div class="bg-orange-500 h-full w-1/2"></div>
+                        <span class="absolute inset-0 text-[9px] text-white font-bold flex items-center justify-center">50% TERJUAL</span>
+                    </div>
+                </a>
+                
+                <!-- Duplicate item cards for layout demo -->
+                <a href="produk.html" class="group border border-transparent hover:border-orange-500 transition rounded-sm p-2 bg-white flex flex-col">
+                    <div class="relative aspect-square bg-gray-100 mb-2 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover group-hover:scale-105 transition">
+                    </div>
+                    <div class="text-orange-600 font-bold text-base">Rp 89.000</div>
+                    <div class="w-full bg-orange-100 h-3 rounded-full overflow-hidden mt-2 relative">
+                        <div class="bg-orange-500 h-full w-4/5"></div>
+                        <span class="absolute inset-0 text-[9px] text-white font-bold flex items-center justify-center">90% TERJUAL</span>
+                    </div>
+                </a>
+                <a href="produk.html" class="group border border-transparent hover:border-orange-500 transition rounded-sm p-2 bg-white flex flex-col">
+                    <div class="relative aspect-square bg-gray-100 mb-2 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover group-hover:scale-105 transition">
+                    </div>
+                    <div class="text-orange-600 font-bold text-base">Rp 120.000</div>
+                    <div class="w-full bg-orange-100 h-3 rounded-full overflow-hidden mt-2 relative">
+                        <div class="bg-orange-500 h-full w-1/4"></div>
+                        <span class="absolute inset-0 text-[9px] text-white font-bold flex items-center justify-center">25% TERJUAL</span>
+                    </div>
+                </a>
+                <a href="produk.html" class="group border border-transparent hover:border-orange-500 transition rounded-sm p-2 bg-white flex flex-col">
+                    <div class="relative aspect-square bg-gray-100 mb-2 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1560343090-f0409e92791a?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover group-hover:scale-105 transition">
+                    </div>
+                    <div class="text-orange-600 font-bold text-base">Rp 45.000</div>
+                    <div class="w-full bg-orange-100 h-3 rounded-full overflow-hidden mt-2 relative">
+                        <div class="bg-orange-500 h-full w-full"></div>
+                        <span class="absolute inset-0 text-[9px] text-white font-bold flex items-center justify-center">HABIS</span>
+                    </div>
+                </a>
+                <a href="produk.html" class="group border border-transparent hover:border-orange-500 transition rounded-sm p-2 bg-white flex flex-col">
+                    <div class="relative aspect-square bg-gray-100 mb-2 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover group-hover:scale-105 transition">
+                    </div>
+                    <div class="text-orange-600 font-bold text-base">Rp 65.000</div>
+                    <div class="w-full bg-orange-100 h-3 rounded-full overflow-hidden mt-2 relative">
+                        <div class="bg-orange-500 h-full w-2/3"></div>
+                        <span class="absolute inset-0 text-[9px] text-white font-bold flex items-center justify-center">60% TERJUAL</span>
+                    </div>
+                </a>
             </div>
         </section>
 
-        <!-- MLBB Guides & Articles Grid -->
-        <section class="space-y-6">
-            <div class="flex items-center justify-between border-b border-slate-800 pb-4">
-                <h3 class="text-xl font-bold flex items-center gap-2">
-                    <i data-lucide="swords" class="text-cyan-400"></i> Update & Panduan Solo Rank
-                </h3>
-                <a href="#" class="text-sm font-semibold text-cyan-400 hover:underline">Lihat Semua</a>
+        <!-- Rekomendasi Produk -->
+        <section class="space-y-4">
+            <div class="bg-white p-4 rounded-sm border-b-4 border-orange-500 shadow-sm">
+                <h3 class="text-center font-bold text-orange-600 text-lg uppercase tracking-wide">Rekomendasi Utama</h3>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Article Card 1 -->
-                <article class="bg-slate-900 rounded-xl border border-slate-800 overflow-hidden hover:border-slate-700 transition flex flex-col">
-                    <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
-                        <div class="space-y-2">
-                            <span class="text-xs font-semibold text-cyan-400">Guide Roamer</span>
-                            <h4 class="font-bold text-lg text-white leading-snug hover:text-cyan-300 cursor-pointer transition">
-                                5 Hero Roamer Tank Terkuat untuk Counter Meta Assassin Jungler
-                            </h4>
-                            <p class="text-slate-400 text-sm line-clamp-2">
-                                Pelajari susunan item dan momentum rotasi terbaik agar Gold Laner tim tetap aman dari gank musuh.
-                            </p>
-                        </div>
-                        <div class="flex items-center justify-between text-xs text-slate-500 pt-2 border-t border-slate-800/50">
-                            <span>3 Jam lalu</span>
-                            <span class="text-cyan-400 flex items-center gap-1"><i data-lucide="book-open" class="w-3 h-3"></i> 4 min baca</span>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+                <!-- Product Card Loop -->
+                <a href="produk.html" class="bg-white rounded-sm shadow-sm hover:shadow-md border border-gray-100 hover:border-orange-500 transition overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=400&q=80" class="w-full h-44 object-cover">
+                        <div class="p-2 space-y-2">
+                            <p class="text-xs text-gray-800 line-clamp-2">Sepatu Sneaker Sport Red Edition Running Unisex Casual Original</p>
+                            <div class="bg-orange-100 text-orange-600 text-[10px] font-bold px-1 inline-block">Gratis Ongkir Extra</div>
                         </div>
                     </div>
-                </article>
-
-                <!-- Article Card 2 -->
-                <article class="bg-slate-900 rounded-xl border border-slate-800 overflow-hidden hover:border-slate-700 transition flex flex-col">
-                    <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
-                        <div class="space-y-2">
-                            <span class="text-xs font-semibold text-cyan-400">Roster Update</span>
-                            <h4 class="font-bold text-lg text-white leading-snug hover:text-cyan-300 cursor-pointer transition">
-                                Transfer Kejutan: Ex-Jungler World Champion Resmi Masuk Daftar Roster
-                            </h4>
-                            <p class="text-slate-400 text-sm line-clamp-2">
-                                Pengumuman resmi melalui kanal media sosial mengonfirmasi kedatangan pemain bintang jelang perempat final.
-                            </p>
-                        </div>
-                        <div class="flex items-center justify-between text-xs text-slate-500 pt-2 border-t border-slate-800/50">
-                            <span>5 Jam lalu</span>
-                            <span class="text-cyan-400 flex items-center gap-1"><i data-lucide="book-open" class="w-3 h-3"></i> 3 min baca</span>
+                    <div class="p-2 pt-0 flex justify-between items-center text-xs text-gray-500">
+                        <span class="text-orange-600 font-bold text-sm">Rp 149.000</span>
+                        <span>10rb+ Terjual</span>
+                    </div>
+                </a>
+                
+                <a href="produk.html" class="bg-white rounded-sm shadow-sm hover:shadow-md border border-gray-100 hover:border-orange-500 transition overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=400&q=80" class="w-full h-44 object-cover">
+                        <div class="p-2 space-y-2">
+                            <p class="text-xs text-gray-800 line-clamp-2">Headphone Wireless Bluetooth Bass Extra HD Audio Original</p>
+                            <div class="bg-orange-100 text-orange-600 text-[10px] font-bold px-1 inline-block">COD BISA</div>
                         </div>
                     </div>
-                </article>
-
-                <!-- Article Card 3 -->
-                <article class="bg-slate-900 rounded-xl border border-slate-800 overflow-hidden hover:border-slate-700 transition flex flex-col">
-                    <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
-                        <div class="space-y-2">
-                            <span class="text-xs font-semibold text-cyan-400">Trik Exp Lane</span>
-                            <h4 class="font-bold text-lg text-white leading-snug hover:text-cyan-300 cursor-pointer transition">
-                                Cara Freeze Lane di Early Game untuk Bikin Fighter Musuh Miskin Gold
-                            </h4>
-                            <p class="text-slate-400 text-sm line-clamp-2">
-                                Kontrol wave minion dengan benar agar musuh tidak mendapat EXP dan kena zoning sejak menit pertama.
-                            </p>
-                        </div>
-                        <div class="flex items-center justify-between text-xs text-slate-500 pt-2 border-t border-slate-800/50">
-                            <span>7 Jam lalu</span>
-                            <span class="text-cyan-400 flex items-center gap-1"><i data-lucide="book-open" class="w-3 h-3"></i> 5 min baca</span>
+                    <div class="p-2 pt-0 flex justify-between items-center text-xs text-gray-500">
+                        <span class="text-orange-600 font-bold text-sm">Rp 299.000</span>
+                        <span>4.8rb Terjual</span>
+                    </div>
+                </a>
+                
+                <!-- Repeat for demo -->
+                <a href="produk.html" class="bg-white rounded-sm shadow-sm hover:shadow-md border border-gray-100 hover:border-orange-500 transition overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=400&q=80" class="w-full h-44 object-cover">
+                        <div class="p-2 space-y-2">
+                            <p class="text-xs text-gray-800 line-clamp-2">Jam Tangan Minimalist Analog Modern Strap Leather Waterproof</p>
                         </div>
                     </div>
-                </article>
+                    <div class="p-2 pt-0 flex justify-between items-center text-xs text-gray-500">
+                        <span class="text-orange-600 font-bold text-sm">Rp 89.000</span>
+                        <span>1.2rb Terjual</span>
+                    </div>
+                </a>
+                <a href="produk.html" class="bg-white rounded-sm shadow-sm hover:shadow-md border border-gray-100 hover:border-orange-500 transition overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=400&q=80" class="w-full h-44 object-cover">
+                        <div class="p-2 space-y-2">
+                            <p class="text-xs text-gray-800 line-clamp-2">Kabel Data Fast Charging Type-C Nylon Braided Durable</p>
+                        </div>
+                    </div>
+                    <div class="p-2 pt-0 flex justify-between items-center text-xs text-gray-500">
+                        <span class="text-orange-600 font-bold text-sm">Rp 25.000</span>
+                        <span>20rb+ Terjual</span>
+                    </div>
+                </a>
+                <a href="produk.html" class="bg-white rounded-sm shadow-sm hover:shadow-md border border-gray-100 hover:border-orange-500 transition overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=400&q=80" class="w-full h-44 object-cover">
+                        <div class="p-2 space-y-2">
+                            <p class="text-xs text-gray-800 line-clamp-2">Kaos Polos Cotton Combed 30s Unisex Soft Premium Quality</p>
+                        </div>
+                    </div>
+                    <div class="p-2 pt-0 flex justify-between items-center text-xs text-gray-500">
+                        <span class="text-orange-600 font-bold text-sm">Rp 45.000</span>
+                        <span>8.5rb Terjual</span>
+                    </div>
+                </a>
             </div>
         </section>
 
     </main>
 
     <!-- Footer -->
-    <footer class="bg-slate-900 border-t border-slate-800 mt-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
-            <div class="flex items-center space-x-2">
-                <div class="bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 p-1.5 rounded-lg font-black text-sm">ML</div>
-                <span class="font-bold text-slate-200">DawnNews &copy; 2026</span>
+    <footer class="bg-gray-200 border-t border-gray-300 text-xs text-gray-600 mt-12">
+        <div class="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div class="space-y-2">
+                <h4 class="font-bold text-gray-800 uppercase">Layanan Pelanggan</h4>
+                <ul class="space-y-1">
+                    <li><a href="#" class="hover:underline">Bantuan</a></li>
+                    <li><a href="#" class="hover:underline">Metode Pembayaran</a></li>
+                    <li><a href="#" class="hover:underline">Garansi Shopee</a></li>
+                    <li><a href="#" class="hover:underline">Pengembalian Barang</a></li>
+                </ul>
             </div>
-            <p class="text-xs text-slate-500 text-center">
-                Portal Berita & Panduan Mobile Legends: Bang Bang Terupdate.
-            </p>
+            <div class="space-y-2">
+                <h4 class="font-bold text-gray-800 uppercase">Jelajahi Shopee</h4>
+                <ul class="space-y-1">
+                    <li><a href="kategori.html" class="hover:underline">Kategori Fashion</a></li>
+                    <li><a href="kategori.html" class="hover:underline">Elektronik Murah</a></li>
+                    <li><a href="kategori.html" class="hover:underline">Flash Sale Hari Ini</a></li>
+                </ul>
+            </div>
+            <div class="space-y-2">
+                <h4 class="font-bold text-gray-800 uppercase">Pembayaran Aman</h4>
+                <div class="flex flex-wrap gap-2">
+                    <span class="bg-white px-2 py-1 border rounded text-[10px] font-bold">BCA</span>
+                    <span class="bg-white px-2 py-1 border rounded text-[10px] font-bold">MANDIRI</span>
+                    <span class="bg-white px-2 py-1 border rounded text-[10px] font-bold">COD</span>
+                    <span class="bg-white px-2 py-1 border rounded text-[10px] font-bold">SPayLater</span>
+                </div>
+            </div>
+            <div class="space-y-2">
+                <h4 class="font-bold text-gray-800 uppercase">Ikuti Kami</h4>
+                <p>Dapatkan penawaran terbaik setiap hari di aplikasi Shopee.</p>
+            </div>
+        </div>
+        <div class="bg-gray-300 text-center py-3 text-gray-500">
+            &copy; 2026 Shopee Clone. Hak Cipta Dilindungi Undang-Undang.
         </div>
     </footer>
 
-    <!-- Initialize Lucide Icons -->
-    <script>
-        lucide.createIcons();
-    </script>
+    <script>lucide.createIcons();</script>
 </body>
 </html>
