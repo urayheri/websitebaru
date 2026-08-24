@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Up Diamond MLBB - DawnNews Store</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col">
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center space-x-2">
+                    <div class="bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 p-2 rounded-xl font-black text-xl tracking-wider">
+                        ML
+                    </div>
+                    <span class="text-xl font-extrabold tracking-tight">DAWN<span class="text-cyan-400">STORE</span></span>
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex space-x-8 text-sm font-semibold text-slate-300">
+                    <a href="index.html" class="hover:text-cyan-400 transition">Beranda</a>
+                    <a href="#" class="text-cyan-400 hover:text-cyan-300 transition">Top Up Game</a>
+                    <a href="#" class="hover:text-cyan-400 transition">Cek Transaksi</a>
+                    <a href="#" class="hover:text-cyan-400 transition">Bantuan / CS</a>
+                </nav>
+
+                <!-- Status CS -->
+                <div class="flex items-center space-x-2 text-xs text-slate-400 bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-full">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>Layanan Otomatis 24/7</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+        
+        <!-- Banner Info MLBB -->
+        <div class="relative overflow-hidden rounded-2xl border border-slate-800 bg-gradient-to-r from-slate-900 via-slate-900 to-slate-950 p-6 md:p-8 mb-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="space-y-2 max-w-2xl">
+                <span class="bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                    Instant Delivery
+                </span>
+                <h1 class="text-2xl md:text-3xl font-extrabold text-white">Top Up Mobile Legends: Bang Bang</h1>
+                <p class="text-slate-400 text-sm">
+                    Proses otomatis 1-3 detik. Masukkan User ID & Zone ID, pilih nominal diamond, bayar, dan diamond langsung masuk ke akun kamu!
+                </p>
+            </div>
+            <div class="flex-shrink-0 bg-slate-800/60 border border-slate-700 p-4 rounded-xl flex items-center space-x-3">
+                <i data-lucide="shield-check" class="w-8 h-8 text-cyan-400"></i>
+                <div class="text-xs">
+                    <div class="font-bold text-white">100% Legal & Aman</div>
+                    <div class="text-slate-400">Garansi uang kembali</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- Form Area (Kiri - 2 Kolom) -->
+            <div class="lg:col-span-2 space-y-8">
+                
+                <!-- Step 1: Data Akun -->
+                <section class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 space-y-4 backdrop-blur-sm">
+                    <div class="flex items-center space-x-3 border-b border-slate-800 pb-4">
+                        <span class="bg-cyan-500 text-slate-950 font-extrabold w-7 h-7 rounded-lg flex items-center justify-center text-sm">1</span>
+                        <h2 class="text-lg font-bold text-white">Lengkapi Data Akun</h2>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-2">User ID</label>
+                            <input type="number" id="userId" placeholder="Contoh: 12345678" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400 transition">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-2">Zone ID / Server</label>
+                            <input type="number" id="zoneId" placeholder="Contoh: 1234" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400 transition">
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-500">
+                        *Petunjuk: User ID dan Zone ID dapat dilihat pada menu profil di dalam game Mobile Legends.
+                    </p>
+                </section>
+
+                <!-- Step 2: Pilih Nominal Diamond -->
+                <section class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 space-y-4 backdrop-blur-sm">
+                    <div class="flex items-center space-x-3 border-b border-slate-800 pb-4">
+                        <span class="bg-cyan-500 text-slate-950 font-extrabold w-7 h-7 rounded-lg flex items-center justify-center text-sm">2</span>
+                        <h2 class="text-lg font-bold text-white">Pilih Nominal Diamond</h2>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4" id="diamondGrid">
+                        <!-- Card Nominal 1 -->
+                        <button onclick="selectDiamond(this, 'Weekly Diamond Pass', 28500)" class="diamond-card border border-slate-800 bg-slate-950 hover:border-cyan-500/50 p-4 rounded-xl text-left transition relative overflow-hidden group">
+                            <div class="text-xs text-amber-400 font-bold mb-1 flex items-center gap-1">
+                                <i data-lucide="crown" class="w-3.5 h-3.5"></i> Best Seller
+                            </div>
+                            <div class="text-sm font-bold text-white">Weekly Pass</div>
+                            <div class="text-xs text-slate-400">Total 220 Diamond</div>
+                            <div class="text-sm font-extrabold text-cyan-400 mt-3">Rp 28.500</div>
+                        </button>
+
+                        <!-- Card Nominal 2 -->
+                        <button onclick="selectDiamond(this, '86 Diamonds', 21000)" class="diamond-card border border-slate-800 bg-slate-950 hover:border-cyan-500/50 p-4 rounded-xl text-left transition group">
+                            <div class="text-sm font-bold text-white">86 Diamonds</div>
+                            <div class="text-xs text-slate-400">78 + 8 Bonus</div>
+                            <div class="text-sm font-extrabold text-cyan-400 mt-3">Rp 21.000</div>
+                        </button>
+
+                        <!-- Card Nominal 3 -->
+                        <button onclick="selectDiamond(this, '172 Diamonds', 42000)" class="diamond-card border border-slate-800 bg-slate-950 hover:border-cyan-500/50 p-4 rounded-xl text-left transition group">
+                            <div class="text-sm font-bold text-white">172 Diamonds</div>
+                            <div class="text-xs text-slate-400">156 + 16 Bonus</div>
+                            <div class="text-sm font-extrabold text-cyan-400 mt-3">Rp 42.000</div>
+                        </button>
+
+                        <!-- Card Nominal 4 -->
+                        <button onclick="selectDiamond(this, '257 Diamonds', 63000)" class="diamond-card border border-slate-800 bg-slate-950 hover:border-cyan-500/50 p-4 rounded-xl text-left transition group">
+                            <div class="text-sm font-bold text-white">257 Diamonds</div>
+                            <div class="text-xs text-slate-400">234 + 23 Bonus</div>
+                            <div class="text-sm font-extrabold text-cyan-400 mt-3">Rp 63.000</div>
+                        </button>
+
+                        <!-- Card Nominal 5 -->
+                        <button onclick="selectDiamond(this, '344 Diamonds', 84000)" class="diamond-card border border-slate-800 bg-slate-950 hover:border-cyan-500/50 p-4 rounded-xl text-left transition group">
+                            <div class="text-sm font-bold text-white">344 Diamonds</div>
+                            <div class="text-xs text-slate-400">312 + 32 Bonus</div>
+                            <div class="text-sm font-extrabold text-cyan-400 mt-3">Rp 84.000</div>
+                        </button>
+
+                        <!-- Card Nominal 6 -->
+                        <button onclick="selectDiamond(this, '706 Diamonds', 170000)" class="diamond-card border border-slate-800 bg-slate-950 hover:border-cyan-500/50 p-4 rounded-xl text-left transition group">
+                            <div class="text-sm font-bold text-white">706 Diamonds</div>
+                            <div class="text-xs text-slate-400">625 + 81 Bonus</div>
+                            <div class="text-sm font-extrabold text-cyan-400 mt-3">Rp 170.000</div>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Step 3: Pilih Metode Pembayaran -->
+                <section class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 space-y-4 backdrop-blur-sm">
+                    <div class="flex items-center space-x-3 border-b border-slate-800 pb-4">
+                        <span class="bg-cyan-500 text-slate-950 font-extrabold w-7 h-7 rounded-lg flex items-center justify-center text-sm">3</span>
+                        <h2 class="text-lg font-bold text-white">Pilih Metode Pembayaran</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="paymentGrid">
+                        <!-- QRIS -->
+                        <button onclick="selectPayment(this, 'QRIS (Semua E-Wallet/Bank)')" class="payment-card border border-slate-800 bg-slate-950 p-4 rounded-xl flex items-center justify-between transition">
+                            <div class="flex items-center space-x-3">
+                                <i data-lucide="qr-code" class="w-6 h-6 text-cyan-400"></i>
+                                <span class="font-bold text-sm text-white">QRIS (BCA, GoPay, OVO, Dana)</span>
+                            </div>
+                            <span class="text-xs bg-emerald-500/20 text-emerald-400 px-2 py-1 rounded">Instan</span>
+                        </button>
+
+                        <!-- GoPay -->
+                        <button onclick="selectPayment(this, 'GoPay')" class="payment-card border border-slate-800 bg-slate-950 p-4 rounded-xl flex items-center justify-between transition">
+                            <div class="flex items-center space-x-3">
+                                <i data-lucide="wallet" class="w-6 h-6 text-blue-400"></i>
+                                <span class="font-bold text-sm text-white">GoPay</span>
+                            </div>
+                            <span class="text-xs text-slate-400">Otomatis</span>
+                        </button>
+
+                        <!-- DANA -->
+                        <button onclick="selectPayment(this, 'DANA')" class="payment-card border border-slate-800 bg-slate-950 p-4 rounded-xl flex items-center justify-between transition">
+                            <div class="flex items-center space-x-3">
+                                <i data-lucide="smartphone" class="w-6 h-6 text-sky-400"></i>
+                                <span class="font-bold text-sm text-white">DANA</span>
+                            </div>
+                            <span class="text-xs text-slate-400">Otomatis</span>
+                        </button>
+
+                        <!-- Transfer Bank -->
+                        <button onclick="selectPayment(this, 'Virtual Account Bank')" class="payment-card border border-slate-800 bg-slate-950 p-4 rounded-xl flex items-center justify-between transition">
+                            <div class="flex items-center space-x-3">
+                                <i data-lucide="building-2" class="w-6 h-6 text-purple-400"></i>
+                                <span class="font-bold text-sm text-white">Virtual Account (BCA/BRI/Mandiri)</span>
+                            </div>
+                            <span class="text-xs text-slate-400">24 Jam</span>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Step 4: No WhatsApp (Kirim Bukti) -->
+                <section class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 space-y-4 backdrop-blur-sm">
+                    <div class="flex items-center space-x-3 border-b border-slate-800 pb-4">
+                        <span class="bg-cyan-500 text-slate-950 font-extrabold w-7 h-7 rounded-lg flex items-center justify-center text-sm">4</span>
+                        <h2 class="text-lg font-bold text-white">Nomor WhatsApp (Opsional)</h2>
+                    </div>
+                    <div>
+                        <input type="tel" id="whatsapp" placeholder="08xxxxxxxxxx" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400 transition">
+                        <p class="text-xs text-slate-500 mt-2">Bukti pembayaran dan status transaksi akan dikirimkan ke WhatsApp kamu.</p>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- Summary & Checkout Sidebar (Kanan - 1 Kolom) -->
+            <div class="lg:col-span-1">
+                <div class="sticky top-24 bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-6">
+                    <h3 class="text-lg font-bold text-white border-b border-slate-800 pb-4 flex items-center gap-2">
+                        <i data-lucide="shopping-cart" class="w-5 h-5 text-cyan-400"></i> Ringkasan Pesanan
+                    </h3>
+
+                    <div class="space-y-3 text-sm">
+                        <div class="flex justify-between text-slate-400">
+                            <span>Item Selected:</span>
+                            <span id="summaryItem" class="font-bold text-white">-</span>
+                        </div>
+                        <div class="flex justify-between text-slate-400">
+                            <span>Metode Bayar:</span>
+                            <span id="summaryPayment" class="font-bold text-white">-</span>
+                        </div>
+                        <div class="flex justify-between text-slate-400">
+                            <span>Biaya Admin:</span>
+                            <span class="font-bold text-emerald-400">Gratis</span>
+                        </div>
+                        <div class="border-t border-slate-800 pt-3 flex justify-between items-center">
+                            <span class="font-bold text-white">Total Bayar:</span>
+                            <span id="summaryTotal" class="text-xl font-black text-cyan-400">Rp 0</span>
+                        </div>
+                    </div>
+
+                    <button onclick="processCheckout()" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-extrabold py-3.5 rounded-xl shadow-lg shadow-cyan-500/20 transition duration-300 flex items-center justify-center space-x-2">
+                        <span>Beli Sekarang</span>
+                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 border-t border-slate-800 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-2">
+                <div class="bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 p-1.5 rounded-lg font-black text-sm">ML</div>
+                <span class="font-bold text-slate-200">DawnStore &copy; 2026</span>
+            </div>
+            <p class="text-xs text-slate-500 text-center">
+                Portal Top Up Game Termurah, Tercepat, & Terpercaya.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Interactive Script -->
+    <script>
+        lucide.createIcons();
+
+        let selectedItemName = '';
+        let selectedItemPrice = 0;
+        let selectedPaymentMethod = '';
+
+        function selectDiamond(element, name, price) {
+            // Remove active class from all diamond cards
+            document.querySelectorAll('.diamond-card').forEach(card => {
+                card.classList.remove('border-cyan-500', 'bg-cyan-950/20');
+                card.classList.add('border-slate-800', 'bg-slate-950');
+            });
+
+            // Add active class to clicked card
+            element.classList.remove('border-slate-800', 'bg-slate-950');
+            element.classList.add('border-cyan-500', 'bg-cyan-950/20');
+
+            selectedItemName = name;
+            selectedItemPrice = price;
+            updateSummary();
+        }
+
+        function selectPayment(element, method) {
+            // Remove active class from all payment cards
+            document.querySelectorAll('.payment-card').forEach(card => {
+                card.classList.remove('border-cyan-500', 'bg-cyan-950/20');
+                card.classList.add('border-slate-800', 'bg-slate-950');
+            });
+
+            // Add active class to clicked card
+            element.classList.remove('border-slate-800', 'bg-slate-950');
+            element.classList.add('border-cyan-500', 'bg-cyan-950/20');
+
+            selectedPaymentMethod = method;
+            updateSummary();
+        }
+
+        function updateSummary() {
+            document.getElementById('summaryItem').innerText = selectedItemName || '-';
+            document.getElementById('summaryPayment').innerText = selectedPaymentMethod || '-';
+            document.getElementById('summaryTotal').innerText = selectedItemPrice ? 'Rp ' + selectedItemPrice.toLocaleString('id-ID') : 'Rp 0';
+        }
+
+        function processCheckout() {
+            const userId = document.getElementById('userId').value;
+            const zoneId = document.getElementById('zoneId').value;
+
+            if (!userId || !zoneId) {
+                alert('Silakan masukkan User ID dan Zone ID kamu terlebih dahulu.');
+                return;
+            }
+            if (!selectedItemName) {
+                alert('Silakan pilih nominal Diamond terlebih dahulu.');
+                return;
+            }
+            if (!selectedPaymentMethod) {
+                alert('Silakan pilih Metode Pembayaran terlebih dahulu.');
+                return;
+            }
+
+            alert(`Pesanan Berhasil dibuat!\n\nUser ID: ${userId} (${zoneId})\nItem: ${selectedItemName}\nMetode: ${selectedPaymentMethod}\nTotal: Rp ${selectedItemPrice.toLocaleString('id-ID')}\n\nSilakan selesaikan pembayaran.`);
+        }
+    </script>
+</body>
+</html>
