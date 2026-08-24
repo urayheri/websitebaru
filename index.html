@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Land of Dawn News - Portal Berita Mobile Legends</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col">
+
+    <!-- Top Bar: Tournaments & Patch Ticker -->
+    <div class="bg-slate-900 border-b border-slate-800 text-xs py-2 px-4 overflow-x-auto whitespace-nowrap">
+        <div class="max-w-7xl mx-auto flex items-center space-x-6 text-slate-300">
+            <span class="font-bold text-cyan-400 flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span> MPL RESULT
+            </span>
+            <span>ONIC <strong class="text-white">2 - 1</strong> RRQ (MATCH 3)</span>
+            <span class="text-slate-700">|</span>
+            <span>EVOS <strong class="text-white">2 - 0</strong> BTR (FT)</span>
+            <span class="text-slate-700">|</span>
+            <span class="font-bold text-amber-400">PATCH NOTE 1.9.88 LIVE</span>
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2">
+                    <div class="bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 p-2 rounded-xl font-black text-xl tracking-wider">
+                        ML
+                    </div>
+                    <span class="text-xl font-extrabold tracking-tight">DAWN<span class="text-cyan-400">NEWS</span></span>
+                </div>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex space-x-8 text-sm font-semibold text-slate-300">
+                    <a href="#" class="text-cyan-400 hover:text-cyan-300 transition">Beranda</a>
+                    <a href="#" class="hover:text-cyan-400 transition">MPL ID</a>
+                    <a href="#" class="hover:text-cyan-400 transition">Patch Notes</a>
+                    <a href="#" class="hover:text-cyan-400 transition">Hero & Build</a>
+                    <a href="#" class="hover:text-cyan-400 transition">Rumor Transfer</a>
+                </nav>
+
+                <!-- Search & Action -->
+                <div class="flex items-center space-x-4">
+                    <button class="p-2 text-slate-400 hover:text-white transition">
+                        <i data-lucide="search" class="w-5 h-5"></i>
+                    </button>
+                    <a href="#tierlist" class="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold px-4 py-2 rounded-lg text-sm transition">
+                        Tier List Meta
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full space-y-12">
+        
+        <!-- Hero Section: Featured MLBB News -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Main Featured Card -->
+            <div class="lg:col-span-2 relative group overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 min-h-[420px] flex flex-col justify-end p-6 md:p-8">
+                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=80" 
+                     alt="Esports Arena" 
+                     class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-30">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent"></div>
+                
+                <div class="relative z-10 space-y-3">
+                    <span class="bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                        MPL Season Utama
+                    </span>
+                    <h1 class="text-2xl md:text-4xl font-extrabold text-white leading-tight group-hover:text-cyan-300 transition">
+                        Royal Derby Memanas: Taktik Pick-Off Bawa Victory di Game Penentu!
+                    </h1>
+                    <p class="text-slate-300 text-sm md:text-base line-clamp-2">
+                        Perebutan posisi puncak klasemen makin ketat. Penggunaan hero Assassin di Lord area jadi penentu eksekusi strategi sang juara.
+                    </p>
+                    <div class="flex items-center text-xs text-slate-400 space-x-4 pt-2">
+                        <span>1 Jam lalu</span>
+                        <span>•</span>
+                        <span>Oleh Analis MLBB</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Secondary Featured Cards -->
+            <div class="space-y-6 flex flex-col justify-between">
+                <!-- Sub Card 1 -->
+                <div class="relative group overflow-hidden rounded-xl border border-slate-800 bg-slate-900 h-[200px] flex flex-col justify-end p-5">
+                    <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=600&q=80" 
+                         alt="Gaming Setup" 
+                         class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-20">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent"></div>
+                    <div class="relative z-10 space-y-1">
+                        <span class="text-xs font-bold text-amber-400 uppercase">Patch Analysis</span>
+                        <h2 class="text-base font-bold text-white group-hover:text-cyan-300 transition line-clamp-2">
+                            Buff Besar Hero Marksman: Meta Gold Lane Diprediksi Berubah Total
+                        </h2>
+                    </div>
+                </div>
+
+                <!-- Sub Card 2 -->
+                <div class="relative group overflow-hidden rounded-xl border border-slate-800 bg-slate-900 h-[200px] flex flex-col justify-end p-5">
+                    <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=600&q=80" 
+                         alt="Cyberpunk Vibe" 
+                         class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-20">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent"></div>
+                    <div class="relative z-10 space-y-1">
+                        <span class="text-xs font-bold text-purple-400 uppercase">Skin & Event</span>
+                        <h2 class="text-base font-bold text-white group-hover:text-cyan-300 transition line-clamp-2">
+                            Bocoran Skin Collector Bulan Depan & Cara Hemat Gacha Resmi
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MLBB Guides & Articles Grid -->
+        <section class="space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                <h3 class="text-xl font-bold flex items-center gap-2">
+                    <i data-lucide="swords" class="text-cyan-400"></i> Update & Panduan Solo Rank
+                </h3>
+                <a href="#" class="text-sm font-semibold text-cyan-400 hover:underline">Lihat Semua</a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Article Card 1 -->
+                <article class="bg-slate-900 rounded-xl border border-slate-800 overflow-hidden hover:border-slate-700 transition flex flex-col">
+                    <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
+                        <div class="space-y-2">
+                            <span class="text-xs font-semibold text-cyan-400">Guide Roamer</span>
+                            <h4 class="font-bold text-lg text-white leading-snug hover:text-cyan-300 cursor-pointer transition">
+                                5 Hero Roamer Tank Terkuat untuk Counter Meta Assassin Jungler
+                            </h4>
+                            <p class="text-slate-400 text-sm line-clamp-2">
+                                Pelajari susunan item dan momentum rotasi terbaik agar Gold Laner tim tetap aman dari gank musuh.
+                            </p>
+                        </div>
+                        <div class="flex items-center justify-between text-xs text-slate-500 pt-2 border-t border-slate-800/50">
+                            <span>3 Jam lalu</span>
+                            <span class="text-cyan-400 flex items-center gap-1"><i data-lucide="book-open" class="w-3 h-3"></i> 4 min baca</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article Card 2 -->
+                <article class="bg-slate-900 rounded-xl border border-slate-800 overflow-hidden hover:border-slate-700 transition flex flex-col">
+                    <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
+                        <div class="space-y-2">
+                            <span class="text-xs font-semibold text-cyan-400">Roster Update</span>
+                            <h4 class="font-bold text-lg text-white leading-snug hover:text-cyan-300 cursor-pointer transition">
+                                Transfer Kejutan: Ex-Jungler World Champion Resmi Masuk Daftar Roster
+                            </h4>
+                            <p class="text-slate-400 text-sm line-clamp-2">
+                                Pengumuman resmi melalui kanal media sosial mengonfirmasi kedatangan pemain bintang jelang perempat final.
+                            </p>
+                        </div>
+                        <div class="flex items-center justify-between text-xs text-slate-500 pt-2 border-t border-slate-800/50">
+                            <span>5 Jam lalu</span>
+                            <span class="text-cyan-400 flex items-center gap-1"><i data-lucide="book-open" class="w-3 h-3"></i> 3 min baca</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article Card 3 -->
+                <article class="bg-slate-900 rounded-xl border border-slate-800 overflow-hidden hover:border-slate-700 transition flex flex-col">
+                    <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
+                        <div class="space-y-2">
+                            <span class="text-xs font-semibold text-cyan-400">Trik Exp Lane</span>
+                            <h4 class="font-bold text-lg text-white leading-snug hover:text-cyan-300 cursor-pointer transition">
+                                Cara Freeze Lane di Early Game untuk Bikin Fighter Musuh Miskin Gold
+                            </h4>
+                            <p class="text-slate-400 text-sm line-clamp-2">
+                                Kontrol wave minion dengan benar agar musuh tidak mendapat EXP dan kena zoning sejak menit pertama.
+                            </p>
+                        </div>
+                        <div class="flex items-center justify-between text-xs text-slate-500 pt-2 border-t border-slate-800/50">
+                            <span>7 Jam lalu</span>
+                            <span class="text-cyan-400 flex items-center gap-1"><i data-lucide="book-open" class="w-3 h-3"></i> 5 min baca</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 border-t border-slate-800 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-2">
+                <div class="bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 p-1.5 rounded-lg font-black text-sm">ML</div>
+                <span class="font-bold text-slate-200">DawnNews &copy; 2026</span>
+            </div>
+            <p class="text-xs text-slate-500 text-center">
+                Portal Berita & Panduan Mobile Legends: Bang Bang Terupdate.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
