@@ -3,278 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopee Clone - Jual Beli Online Terlengkap & Terpercaya</title>
+    <title>Pemantau Web Siswa (Google Sheets)</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
-        body { font-family: 'Roboto', sans-serif; }
-    </style>
 </head>
-<body class="bg-gray-100 text-gray-800 min-h-screen flex flex-col">
+<body class="bg-slate-900 text-slate-100 font-sans h-screen flex flex-col overflow-hidden">
 
-    <!-- Top Bar Navigation -->
-    <header class="bg-gradient-to-b from-orange-600 to-orange-500 text-white sticky top-0 z-50 shadow-md">
-        <div class="max-w-7xl mx-auto px-4 py-1 flex justify-between text-xs border-b border-orange-400/40">
-            <div class="flex space-x-4">
-                <a href="#" class="hover:opacity-80">Seller Centre</a>
-                <span>|</span>
-                <a href="#" class="hover:opacity-80">Download Aplikasi</a>
-                <span>|</span>
-                <a href="#" class="hover:opacity-80">Ikuti Kami di Sosmed</a>
-            </div>
-            <div class="flex space-x-4">
-                <a href="#" class="hover:opacity-80 flex items-center gap-1"><i data-lucide="bell" class="w-3.5 h-3.5"></i> Notifikasi</a>
-                <a href="#" class="hover:opacity-80 flex items-center gap-1"><i data-lucide="help-circle" class="w-3.5 h-3.5"></i> Bantuan</a>
-                <a href="#" class="font-bold hover:opacity-80">AkunSaya</a>
-            </div>
+    <!-- Header / Navbar -->
+    <header class="bg-slate-800 border-b border-slate-700 px-6 py-4 flex justify-between items-center shadow-md">
+        <div class="flex items-center gap-3">
+            <i data-lucide="monitor" class="text-indigo-400 w-7 h-7"></i>
+            <h1 class="text-xl font-bold tracking-wide">Pemantau Web Siswa</h1>
         </div>
-
-        <!-- Main Search Bar Header -->
-        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-6">
-            <a href="index.html" class="flex items-center gap-2 text-2xl font-black tracking-tighter">
-                <i data-lucide="shopping-bag" class="w-8 h-8"></i>
-                <span>Shopee</span>
-            </a>
-
-            <!-- Search Form -->
-            <form action="kategori.html" class="flex-grow max-w-2xl flex bg-white rounded-sm overflow-hidden p-1 shadow">
-                <input type="text" placeholder="Garansi Bebas Pengembalian - Cari sepatu, baju, elektronik..." class="w-full px-3 py-1.5 text-sm text-gray-800 focus:outline-none">
-                <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-1.5 rounded-sm">
-                    <i data-lucide="search" class="w-4 h-4"></i>
-                </button>
-            </form>
-
-            <!-- Shopping Cart Icon -->
-            <a href="keranjang.html" class="relative p-2 hover:opacity-90">
-                <i data-lucide="shopping-cart" class="w-7 h-7"></i>
-                <span class="absolute top-0 right-0 bg-white text-orange-600 text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center border border-orange-500">3</span>
-            </a>
+        <div class="flex items-center gap-4 text-sm text-slate-400">
+            <div>Total Web: <span id="total-count" class="font-semibold text-indigo-400">0</span></div>
+            <button onclick="muatDataSiswa()" class="flex items-center gap-1.5 bg-slate-700 hover:bg-slate-600 px-3 py-1.5 rounded-lg text-xs transition text-slate-200">
+                <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i> Refresh Data
+            </button>
         </div>
     </header>
 
-    <!-- Content Area -->
-    <main class="max-w-7xl mx-auto px-4 py-6 w-full space-y-6 flex-grow">
+    <!-- Main Container -->
+    <div class="flex-1 flex overflow-hidden">
         
-        <!-- Hero Banners -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <div class="md:col-span-2 bg-orange-200 rounded-sm overflow-hidden h-60 relative group">
-                <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-black/20 flex items-end p-6 text-white font-bold text-2xl">
-                    PROMO PUNCAK 9.9 - DISKON HINGGA 90%
+        <!-- Sidebar: Form Input Siswa & Daftar Web -->
+        <aside class="w-1/3 min-w-[320px] max-w-[400px] bg-slate-800/50 border-r border-slate-700 p-4 flex flex-col gap-4 overflow-y-auto">
+            
+            <!-- Form Input (Untuk Siswa) -->
+            <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 shadow flex flex-col gap-3">
+                <h2 class="text-xs font-bold text-indigo-400 uppercase tracking-wider">Form Setor Web Siswa</h2>
+                <div>
+                    <label class="text-xs text-slate-400">Nama Lengkap Siswa</label>
+                    <input type="text" id="input-nama" placeholder="Contoh: Budi Santoso" class="w-full mt-1 bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-indigo-500 text-slate-100">
+                </div>
+                <div>
+                    <label class="text-xs text-slate-400">URL / Alamat Web Siswa</label>
+                    <input type="url" id="input-url" placeholder="https://nama-siswa.vercel.app" class="w-full mt-1 bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-indigo-500 text-slate-100">
+                </div>
+                <button onclick="kirimDataSiswa()" id="btn-kirim" class="w-full mt-2 bg-indigo-600 hover:bg-indigo-500 font-medium py-2 rounded-lg text-sm transition flex items-center justify-center gap-2 disabled:opacity-50">
+                    <i data-lucide="send" class="w-4 h-4"></i> Simpan ke Google Sheet
+                </button>
+            </div>
+
+            <!-- List Web Siswa -->
+            <div class="flex-1 flex flex-col gap-2">
+                <h2 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Daftar Web Terkumpul</h2>
+                <div id="daftar-siswa" class="flex flex-col gap-2">
+                    <div class="text-center text-xs text-slate-500 py-6">Memuat data dari Google Sheet...</div>
                 </div>
             </div>
-            <div class="space-y-3 flex flex-col justify-between">
-                <div class="h-28 bg-blue-100 rounded-sm overflow-hidden relative">
-                    <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover">
+        </aside>
+
+        <!-- Preview Web Area (Live Play Iframe) -->
+        <main class="flex-1 bg-slate-950 flex flex-col">
+            <!-- Top Bar Preview -->
+            <div class="bg-slate-800 px-4 py-2 border-b border-slate-700 flex justify-between items-center text-xs">
+                <div class="flex items-center gap-2 truncate text-slate-400">
+                    <i data-lucide="globe" class="w-4 h-4 text-indigo-400 shrink-0"></i>
+                    <span id="preview-url-text">Pilih atau Play web siswa untuk melihat tampilan</span>
                 </div>
-                <div class="h-28 bg-purple-100 rounded-sm overflow-hidden relative">
-                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover">
+                <button onclick="refreshIframe()" title="Refresh Web" class="p-1.5 hover:bg-slate-700 rounded-md transition text-slate-300">
+                    <i data-lucide="rotate-cw" class="w-4 h-4"></i>
+                </button>
+            </div>
+
+            <!-- Frame Konten Web -->
+            <div class="flex-1 relative bg-white">
+                <!-- State Kosong / Belum Dipilih -->
+                <div id="placeholder-text" class="absolute inset-0 bg-slate-950 flex flex-col items-center justify-center text-slate-500 gap-3 z-10">
+                    <i data-lucide="play-circle" class="w-16 h-16 stroke-1"></i>
+                    <p class="text-sm">Klik tombol <span class="text-indigo-400 font-semibold">Play (▶)</span> pada nama siswa di menu sebelah kiri</p>
                 </div>
-            </div>
-        </div>
 
-        <!-- Flash Sale Section -->
-        <section class="bg-white rounded-sm p-4 shadow-sm space-y-4">
-            <div class="flex items-center justify-between border-b pb-3">
-                <div class="flex items-center gap-3">
-                    <h2 class="text-xl font-black text-orange-600 italic tracking-wider flex items-center gap-1">
-                        <i data-lucide="zap" class="fill-orange-600"></i> FLASH SALE
-                    </h2>
-                    <div class="bg-black text-white text-xs font-bold px-2 py-1 rounded">02 : 14 : 45</div>
-                </div>
-                <a href="kategori.html" class="text-sm font-semibold text-orange-500 hover:underline">Lihat Semua ></a>
+                <!-- Web View / Live Preview -->
+                <iframe id="web-preview" src="" class="w-full h-full border-0 relative z-0" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
             </div>
+        </main>
+    </div>
 
-            <!-- Flash Sale Cards -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
-                <!-- Item 1 -->
-                <a href="produk.html" class="group border border-transparent hover:border-orange-500 transition rounded-sm p-2 bg-white flex flex-col">
-                    <div class="relative aspect-square bg-gray-100 mb-2 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover group-hover:scale-105 transition">
-                        <span class="absolute top-0 right-0 bg-yellow-400 text-orange-700 font-bold text-[10px] px-1.5 py-0.5">DISKON 50%</span>
-                    </div>
-                    <div class="text-orange-600 font-bold text-base">Rp 149.000</div>
-                    <div class="w-full bg-orange-100 h-3 rounded-full overflow-hidden mt-2 relative">
-                        <div class="bg-orange-500 h-full w-3/4"></div>
-                        <span class="absolute inset-0 text-[9px] text-white font-bold flex items-center justify-center">80% TERJUAL</span>
-                    </div>
-                </a>
-                
-                <!-- Item 2 -->
-                <a href="produk.html" class="group border border-transparent hover:border-orange-500 transition rounded-sm p-2 bg-white flex flex-col">
-                    <div class="relative aspect-square bg-gray-100 mb-2 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover group-hover:scale-105 transition">
-                        <span class="absolute top-0 right-0 bg-yellow-400 text-orange-700 font-bold text-[10px] px-1.5 py-0.5">DISKON 35%</span>
-                    </div>
-                    <div class="text-orange-600 font-bold text-base">Rp 299.000</div>
-                    <div class="w-full bg-orange-100 h-3 rounded-full overflow-hidden mt-2 relative">
-                        <div class="bg-orange-500 h-full w-1/2"></div>
-                        <span class="absolute inset-0 text-[9px] text-white font-bold flex items-center justify-center">50% TERJUAL</span>
-                    </div>
-                </a>
-                
-                <!-- Duplicate item cards for layout demo -->
-                <a href="produk.html" class="group border border-transparent hover:border-orange-500 transition rounded-sm p-2 bg-white flex flex-col">
-                    <div class="relative aspect-square bg-gray-100 mb-2 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover group-hover:scale-105 transition">
-                    </div>
-                    <div class="text-orange-600 font-bold text-base">Rp 89.000</div>
-                    <div class="w-full bg-orange-100 h-3 rounded-full overflow-hidden mt-2 relative">
-                        <div class="bg-orange-500 h-full w-4/5"></div>
-                        <span class="absolute inset-0 text-[9px] text-white font-bold flex items-center justify-center">90% TERJUAL</span>
-                    </div>
-                </a>
-                <a href="produk.html" class="group border border-transparent hover:border-orange-500 transition rounded-sm p-2 bg-white flex flex-col">
-                    <div class="relative aspect-square bg-gray-100 mb-2 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover group-hover:scale-105 transition">
-                    </div>
-                    <div class="text-orange-600 font-bold text-base">Rp 120.000</div>
-                    <div class="w-full bg-orange-100 h-3 rounded-full overflow-hidden mt-2 relative">
-                        <div class="bg-orange-500 h-full w-1/4"></div>
-                        <span class="absolute inset-0 text-[9px] text-white font-bold flex items-center justify-center">25% TERJUAL</span>
-                    </div>
-                </a>
-                <a href="produk.html" class="group border border-transparent hover:border-orange-500 transition rounded-sm p-2 bg-white flex flex-col">
-                    <div class="relative aspect-square bg-gray-100 mb-2 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1560343090-f0409e92791a?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover group-hover:scale-105 transition">
-                    </div>
-                    <div class="text-orange-600 font-bold text-base">Rp 45.000</div>
-                    <div class="w-full bg-orange-100 h-3 rounded-full overflow-hidden mt-2 relative">
-                        <div class="bg-orange-500 h-full w-full"></div>
-                        <span class="absolute inset-0 text-[9px] text-white font-bold flex items-center justify-center">HABIS</span>
-                    </div>
-                </a>
-                <a href="produk.html" class="group border border-transparent hover:border-orange-500 transition rounded-sm p-2 bg-white flex flex-col">
-                    <div class="relative aspect-square bg-gray-100 mb-2 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover group-hover:scale-105 transition">
-                    </div>
-                    <div class="text-orange-600 font-bold text-base">Rp 65.000</div>
-                    <div class="w-full bg-orange-100 h-3 rounded-full overflow-hidden mt-2 relative">
-                        <div class="bg-orange-500 h-full w-2/3"></div>
-                        <span class="absolute inset-0 text-[9px] text-white font-bold flex items-center justify-center">60% TERJUAL</span>
-                    </div>
-                </a>
-            </div>
-        </section>
+    <!-- Logic JavaScript -->
+    <script>
+        // PASTE URL GOOGLE APPS SCRIPT ANDA DI SINI
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxxs_NxuTnqTMxTN5ol8l2s3nOt1Y0OXY_x8wQKWkC3LAycp4vs81Al1E_F1Su0Wesl6g/exec";
 
-        <!-- Rekomendasi Produk -->
-        <section class="space-y-4">
-            <div class="bg-white p-4 rounded-sm border-b-4 border-orange-500 shadow-sm">
-                <h3 class="text-center font-bold text-orange-600 text-lg uppercase tracking-wide">Rekomendasi Utama</h3>
-            </div>
+        // Ambil data saat halaman dibuka
+        document.addEventListener("DOMContentLoaded", () => {
+            lucide.createIcons();
+            muatDataSiswa();
+        });
 
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
-                <!-- Product Card Loop -->
-                <a href="produk.html" class="bg-white rounded-sm shadow-sm hover:shadow-md border border-gray-100 hover:border-orange-500 transition overflow-hidden flex flex-col justify-between">
-                    <div>
-                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=400&q=80" class="w-full h-44 object-cover">
-                        <div class="p-2 space-y-2">
-                            <p class="text-xs text-gray-800 line-clamp-2">Sepatu Sneaker Sport Red Edition Running Unisex Casual Original</p>
-                            <div class="bg-orange-100 text-orange-600 text-[10px] font-bold px-1 inline-block">Gratis Ongkir Extra</div>
+        // 1. Fungsi Mengirim Data ke Google Sheet
+        function kirimDataSiswa() {
+            const namaInput = document.getElementById('input-nama');
+            const urlInput = document.getElementById('input-url');
+            const btnKirim = document.getElementById('btn-kirim');
+            
+            const nama = namaInput.value.trim();
+            let url = urlInput.value.trim();
+
+            if (!nama || !url) {
+                alert("Harap isi Nama Lengkap dan Alamat Web!");
+                return;
+            }
+
+            if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                url = 'https://' + url;
+            }
+
+            btnKirim.disabled = true;
+            btnKirim.innerText = "Mengirim...";
+
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ nama: nama, url: url })
+            })
+            .then(() => {
+                alert("Berhasil! Data web tersimpan di Google Sheet.");
+                namaInput.value = '';
+                urlInput.value = '';
+                btnKirim.disabled = false;
+                btnKirim.innerHTML = `<i data-lucide="send" class="w-4 h-4"></i> Simpan ke Google Sheet`;
+                lucide.createIcons();
+                // Tunggu 1 detik lalu reload data
+                setTimeout(muatDataSiswa, 1000);
+            })
+            .catch(error => {
+                alert("Gagal menyimpan data: " + error);
+                btnKirim.disabled = false;
+                btnKirim.innerHTML = `<i data-lucide="send" class="w-4 h-4"></i> Simpan ke Google Sheet`;
+                lucide.createIcons();
+            });
+        }
+
+        // 2. Fungsi Membaca Data dari Google Sheet
+        function muatDataSiswa() {
+            const container = document.getElementById('daftar-siswa');
+            const totalCount = document.getElementById('total-count');
+
+            fetch(SCRIPT_URL)
+            .then(res => res.json())
+            .then(data => {
+                container.innerHTML = '';
+                totalCount.innerText = data.length;
+
+                if (data.length === 0) {
+                    container.innerHTML = `<div class="text-center text-xs text-slate-500 py-6">Belum ada web siswa tersimpan</div>`;
+                    return;
+                }
+
+                data.reverse().forEach((siswa) => {
+                    const card = document.createElement('div');
+                    card.className = "bg-slate-800 p-3 rounded-lg border border-slate-700 flex justify-between items-center hover:border-slate-600 transition";
+                    card.innerHTML = `
+                        <div class="overflow-hidden pr-2">
+                            <h3 class="font-medium text-sm text-slate-200 truncate">${siswa.nama}</h3>
+                            <a href="${siswa.url}" target="_blank" class="text-xs text-indigo-400 hover:underline truncate block">${siswa.url}</a>
                         </div>
-                    </div>
-                    <div class="p-2 pt-0 flex justify-between items-center text-xs text-gray-500">
-                        <span class="text-orange-600 font-bold text-sm">Rp 149.000</span>
-                        <span>10rb+ Terjual</span>
-                    </div>
-                </a>
-                
-                <a href="produk.html" class="bg-white rounded-sm shadow-sm hover:shadow-md border border-gray-100 hover:border-orange-500 transition overflow-hidden flex flex-col justify-between">
-                    <div>
-                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=400&q=80" class="w-full h-44 object-cover">
-                        <div class="p-2 space-y-2">
-                            <p class="text-xs text-gray-800 line-clamp-2">Headphone Wireless Bluetooth Bass Extra HD Audio Original</p>
-                            <div class="bg-orange-100 text-orange-600 text-[10px] font-bold px-1 inline-block">COD BISA</div>
+                        <div class="flex items-center gap-1 shrink-0">
+                            <button onclick="playWeb('${siswa.url}')" title="Play / Preview" class="p-2 bg-emerald-600/20 text-emerald-400 hover:bg-emerald-600 hover:text-white rounded-md transition">
+                                <i data-lucide="play" class="w-4 h-4 fill-current"></i>
+                            </button>
                         </div>
-                    </div>
-                    <div class="p-2 pt-0 flex justify-between items-center text-xs text-gray-500">
-                        <span class="text-orange-600 font-bold text-sm">Rp 299.000</span>
-                        <span>4.8rb Terjual</span>
-                    </div>
-                </a>
-                
-                <!-- Repeat for demo -->
-                <a href="produk.html" class="bg-white rounded-sm shadow-sm hover:shadow-md border border-gray-100 hover:border-orange-500 transition overflow-hidden flex flex-col justify-between">
-                    <div>
-                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=400&q=80" class="w-full h-44 object-cover">
-                        <div class="p-2 space-y-2">
-                            <p class="text-xs text-gray-800 line-clamp-2">Jam Tangan Minimalist Analog Modern Strap Leather Waterproof</p>
-                        </div>
-                    </div>
-                    <div class="p-2 pt-0 flex justify-between items-center text-xs text-gray-500">
-                        <span class="text-orange-600 font-bold text-sm">Rp 89.000</span>
-                        <span>1.2rb Terjual</span>
-                    </div>
-                </a>
-                <a href="produk.html" class="bg-white rounded-sm shadow-sm hover:shadow-md border border-gray-100 hover:border-orange-500 transition overflow-hidden flex flex-col justify-between">
-                    <div>
-                        <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=400&q=80" class="w-full h-44 object-cover">
-                        <div class="p-2 space-y-2">
-                            <p class="text-xs text-gray-800 line-clamp-2">Kabel Data Fast Charging Type-C Nylon Braided Durable</p>
-                        </div>
-                    </div>
-                    <div class="p-2 pt-0 flex justify-between items-center text-xs text-gray-500">
-                        <span class="text-orange-600 font-bold text-sm">Rp 25.000</span>
-                        <span>20rb+ Terjual</span>
-                    </div>
-                </a>
-                <a href="produk.html" class="bg-white rounded-sm shadow-sm hover:shadow-md border border-gray-100 hover:border-orange-500 transition overflow-hidden flex flex-col justify-between">
-                    <div>
-                        <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=400&q=80" class="w-full h-44 object-cover">
-                        <div class="p-2 space-y-2">
-                            <p class="text-xs text-gray-800 line-clamp-2">Kaos Polos Cotton Combed 30s Unisex Soft Premium Quality</p>
-                        </div>
-                    </div>
-                    <div class="p-2 pt-0 flex justify-between items-center text-xs text-gray-500">
-                        <span class="text-orange-600 font-bold text-sm">Rp 45.000</span>
-                        <span>8.5rb Terjual</span>
-                    </div>
-                </a>
-            </div>
-        </section>
+                    `;
+                    container.appendChild(card);
+                });
+                lucide.createIcons();
+            })
+            .catch(err => {
+                container.innerHTML = `<div class="text-center text-xs text-rose-400 py-6">Gagal memuat data dari Google Sheet</div>`;
+            });
+        }
 
-    </main>
+        // Helper UI
+        function playWeb(url) {
+            const iframe = document.getElementById('web-preview');
+            const placeholder = document.getElementById('placeholder-text');
+            const previewUrlText = document.getElementById('preview-url-text');
 
-    <!-- Footer -->
-    <footer class="bg-gray-200 border-t border-gray-300 text-xs text-gray-600 mt-12">
-        <div class="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div class="space-y-2">
-                <h4 class="font-bold text-gray-800 uppercase">Layanan Pelanggan</h4>
-                <ul class="space-y-1">
-                    <li><a href="#" class="hover:underline">Bantuan</a></li>
-                    <li><a href="#" class="hover:underline">Metode Pembayaran</a></li>
-                    <li><a href="#" class="hover:underline">Garansi Shopee</a></li>
-                    <li><a href="#" class="hover:underline">Pengembalian Barang</a></li>
-                </ul>
-            </div>
-            <div class="space-y-2">
-                <h4 class="font-bold text-gray-800 uppercase">Jelajahi Shopee</h4>
-                <ul class="space-y-1">
-                    <li><a href="kategori.html" class="hover:underline">Kategori Fashion</a></li>
-                    <li><a href="kategori.html" class="hover:underline">Elektronik Murah</a></li>
-                    <li><a href="kategori.html" class="hover:underline">Flash Sale Hari Ini</a></li>
-                </ul>
-            </div>
-            <div class="space-y-2">
-                <h4 class="font-bold text-gray-800 uppercase">Pembayaran Aman</h4>
-                <div class="flex flex-wrap gap-2">
-                    <span class="bg-white px-2 py-1 border rounded text-[10px] font-bold">BCA</span>
-                    <span class="bg-white px-2 py-1 border rounded text-[10px] font-bold">MANDIRI</span>
-                    <span class="bg-white px-2 py-1 border rounded text-[10px] font-bold">COD</span>
-                    <span class="bg-white px-2 py-1 border rounded text-[10px] font-bold">SPayLater</span>
-                </div>
-            </div>
-            <div class="space-y-2">
-                <h4 class="font-bold text-gray-800 uppercase">Ikuti Kami</h4>
-                <p>Dapatkan penawaran terbaik setiap hari di aplikasi Shopee.</p>
-            </div>
-        </div>
-        <div class="bg-gray-300 text-center py-3 text-gray-500">
-            &copy; 2026 Shopee Clone. Hak Cipta Dilindungi Undang-Undang.
-        </div>
-    </footer>
+            placeholder.style.display = 'none';
+            iframe.src = url;
+            previewUrlText.innerText = url;
+        }
 
-    <script>lucide.createIcons();</script>
+        function refreshIframe() {
+            const iframe = document.getElementById('web-preview');
+            if (iframe.src) iframe.src = iframe.src;
+        }
+    </script>
 </body>
 </html>
