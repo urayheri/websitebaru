@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pemantau Web Siswa (Google Sheets)</title>
+    <title>Pemantau Web Siswa (RPL 1 & RPL 2)</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons -->
@@ -29,7 +29,7 @@
     <div class="flex-1 flex overflow-hidden">
         
         <!-- Sidebar: Form Input Siswa & Daftar Web -->
-        <aside class="w-1/3 min-w-[320px] max-w-[400px] bg-slate-800/50 border-r border-slate-700 p-4 flex flex-col gap-4 overflow-y-auto">
+        <aside class="w-1/3 min-w-[340px] max-w-[420px] bg-slate-800/50 border-r border-slate-700 p-4 flex flex-col gap-4 overflow-y-auto">
             
             <!-- Form Input (Untuk Siswa) -->
             <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 shadow flex flex-col gap-3">
@@ -37,6 +37,13 @@
                 <div>
                     <label class="text-xs text-slate-400">Nama Lengkap Siswa</label>
                     <input type="text" id="input-nama" placeholder="Contoh: Budi Santoso" class="w-full mt-1 bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-indigo-500 text-slate-100">
+                </div>
+                <div>
+                    <label class="text-xs text-slate-400">Pilih Kelas</label>
+                    <select id="input-kelas" class="w-full mt-1 bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-indigo-500 text-slate-100">
+                        <option value="RPL 1">RPL 1</option>
+                        <option value="RPL 2">RPL 2</option>
+                    </select>
                 </div>
                 <div>
                     <label class="text-xs text-slate-400">URL / Alamat Web Siswa</label>
@@ -47,16 +54,25 @@
                 </button>
             </div>
 
-            <!-- List Web Siswa -->
+            <!-- List Web Siswa & Filter -->
             <div class="flex-1 flex flex-col gap-2">
-                <h2 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Daftar Web Terkumpul</h2>
+                <div class="flex justify-between items-center mb-1">
+                    <h2 class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Daftar Web Terkumpul</h2>
+                    <!-- Filter Kelas -->
+                    <select id="filter-kelas" onchange="filterDanTampilkanData()" class="bg-slate-800 text-indigo-400 border border-slate-700 rounded px-2 py-1 text-xs focus:outline-none">
+                        <option value="SEMUA">Semua Kelas</option>
+                        <option value="RPL 1">RPL 1</option>
+                        <option value="RPL 2">RPL 2</option>
+                    </select>
+                </div>
+
                 <div id="daftar-siswa" class="flex flex-col gap-2">
                     <div class="text-center text-xs text-slate-500 py-6">Memuat data dari Google Sheet...</div>
                 </div>
             </div>
         </aside>
 
-        <!-- Preview Web Area (Live Play Iframe) -->
+        <!-- Preview Web Area -->
         <main class="flex-1 bg-slate-950 flex flex-col">
             <!-- Top Bar Preview -->
             <div class="bg-slate-800 px-4 py-2 border-b border-slate-700 flex justify-between items-center text-xs">
@@ -71,13 +87,10 @@
 
             <!-- Frame Konten Web -->
             <div class="flex-1 relative bg-white">
-                <!-- State Kosong / Belum Dipilih -->
                 <div id="placeholder-text" class="absolute inset-0 bg-slate-950 flex flex-col items-center justify-center text-slate-500 gap-3 z-10">
                     <i data-lucide="play-circle" class="w-16 h-16 stroke-1"></i>
                     <p class="text-sm">Klik tombol <span class="text-indigo-400 font-semibold">Play (▶)</span> pada nama siswa di menu sebelah kiri</p>
                 </div>
-
-                <!-- Web View / Live Preview -->
                 <iframe id="web-preview" src="" class="w-full h-full border-0 relative z-0" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
             </div>
         </main>
@@ -85,22 +98,25 @@
 
     <!-- Logic JavaScript -->
     <script>
-        // PASTE URL GOOGLE APPS SCRIPT ANDA DI SINI
+        // PASTE URL GOOGLE APPS SCRIPT LATEST DEPLOYMENT ANDA DI SINI
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxxs_NxuTnqTMxTN5ol8l2s3nOt1Y0OXY_x8wQKWkC3LAycp4vs81Al1E_F1Su0Wesl6g/exec";
 
-        // Ambil data saat halaman dibuka
+        let rawDataSiswa = []; // Menyimpan data mentah dari server
+
         document.addEventListener("DOMContentLoaded", () => {
             lucide.createIcons();
             muatDataSiswa();
         });
 
-        // 1. Fungsi Mengirim Data ke Google Sheet
+        // 1. Simpan Data Siswa
         function kirimDataSiswa() {
             const namaInput = document.getElementById('input-nama');
+            const kelasInput = document.getElementById('input-kelas');
             const urlInput = document.getElementById('input-url');
             const btnKirim = document.getElementById('btn-kirim');
             
             const nama = namaInput.value.trim();
+            const kelas = kelasInput.value;
             let url = urlInput.value.trim();
 
             if (!nama || !url) {
@@ -117,68 +133,115 @@
 
             fetch(SCRIPT_URL, {
                 method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ nama: nama, url: url })
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify({ action: "simpan", nama: nama, kelas: kelas, url: url })
             })
-            .then(() => {
-                alert("Berhasil! Data web tersimpan di Google Sheet.");
-                namaInput.value = '';
-                urlInput.value = '';
-                btnKirim.disabled = false;
-                btnKirim.innerHTML = `<i data-lucide="send" class="w-4 h-4"></i> Simpan ke Google Sheet`;
-                lucide.createIcons();
-                // Tunggu 1 detik lalu reload data
-                setTimeout(muatDataSiswa, 1000);
+            .then(res => res.json())
+            .then(data => {
+                if(data.status === "success") {
+                    alert("Berhasil! Data web tersimpan.");
+                    namaInput.value = '';
+                    urlInput.value = '';
+                    muatDataSiswa();
+                } else {
+                    alert("Gagal: " + data.message);
+                }
             })
             .catch(error => {
-                alert("Gagal menyimpan data: " + error);
+                alert("Error saat menyimpan data: " + error);
+            })
+            .finally(() => {
                 btnKirim.disabled = false;
                 btnKirim.innerHTML = `<i data-lucide="send" class="w-4 h-4"></i> Simpan ke Google Sheet`;
                 lucide.createIcons();
             });
         }
 
-        // 2. Fungsi Membaca Data dari Google Sheet
+        // 2. Baca Data Siswa dari Sheet
         function muatDataSiswa() {
             const container = document.getElementById('daftar-siswa');
-            const totalCount = document.getElementById('total-count');
+            container.innerHTML = `<div class="text-center text-xs text-slate-500 py-6">Memuat data...</div>`;
 
             fetch(SCRIPT_URL)
             .then(res => res.json())
             .then(data => {
-                container.innerHTML = '';
-                totalCount.innerText = data.length;
-
-                if (data.length === 0) {
-                    container.innerHTML = `<div class="text-center text-xs text-slate-500 py-6">Belum ada web siswa tersimpan</div>`;
-                    return;
-                }
-
-                data.reverse().forEach((siswa) => {
-                    const card = document.createElement('div');
-                    card.className = "bg-slate-800 p-3 rounded-lg border border-slate-700 flex justify-between items-center hover:border-slate-600 transition";
-                    card.innerHTML = `
-                        <div class="overflow-hidden pr-2">
-                            <h3 class="font-medium text-sm text-slate-200 truncate">${siswa.nama}</h3>
-                            <a href="${siswa.url}" target="_blank" class="text-xs text-indigo-400 hover:underline truncate block">${siswa.url}</a>
-                        </div>
-                        <div class="flex items-center gap-1 shrink-0">
-                            <button onclick="playWeb('${siswa.url}')" title="Play / Preview" class="p-2 bg-emerald-600/20 text-emerald-400 hover:bg-emerald-600 hover:text-white rounded-md transition">
-                                <i data-lucide="play" class="w-4 h-4 fill-current"></i>
-                            </button>
-                        </div>
-                    `;
-                    container.appendChild(card);
-                });
-                lucide.createIcons();
+                rawDataSiswa = data;
+                filterDanTampilkanData();
             })
             .catch(err => {
                 container.innerHTML = `<div class="text-center text-xs text-rose-400 py-6">Gagal memuat data dari Google Sheet</div>`;
             });
         }
 
-        // Helper UI
+        // 3. Filter berdasarkan Kelas dan Render UI
+        function filterDanTampilkanData() {
+            const container = document.getElementById('daftar-siswa');
+            const totalCount = document.getElementById('total-count');
+            const filterKelas = document.getElementById('filter-kelas').value;
+
+            let dataFiltered = rawDataSiswa;
+            if (filterKelas !== "SEMUA") {
+                dataFiltered = rawDataSiswa.filter(item => item.kelas === filterKelas);
+            }
+
+            container.innerHTML = '';
+            totalCount.innerText = dataFiltered.length;
+
+            if (dataFiltered.length === 0) {
+                container.innerHTML = `<div class="text-center text-xs text-slate-500 py-6">Tidak ada data untuk kelas ini</div>`;
+                return;
+            }
+
+            dataFiltered.slice().reverse().forEach((siswa) => {
+                const card = document.createElement('div');
+                card.className = "bg-slate-800 p-3 rounded-lg border border-slate-700 flex justify-between items-center hover:border-slate-600 transition gap-2";
+                card.innerHTML = `
+                    <div class="overflow-hidden pr-1 flex-1">
+                        <div class="flex items-center gap-2">
+                            <h3 class="font-medium text-sm text-slate-200 truncate">${siswa.nama}</h3>
+                            <span class="text-[10px] bg-indigo-900/80 text-indigo-300 font-semibold px-1.5 py-0.5 rounded border border-indigo-700/50">${siswa.kelas}</span>
+                        </div>
+                        <a href="${siswa.url}" target="_blank" class="text-xs text-indigo-400 hover:underline truncate block mt-0.5">${siswa.url}</a>
+                    </div>
+                    <div class="flex items-center gap-1 shrink-0">
+                        <button onclick="playWeb('${siswa.url}')" title="Play / Preview" class="p-2 bg-emerald-600/20 text-emerald-400 hover:bg-emerald-600 hover:text-white rounded-md transition">
+                            <i data-lucide="play" class="w-4 h-4 fill-current"></i>
+                        </button>
+                        <button onclick="hapusSiswa(${siswa.id})" title="Hapus Data (Khusus Guru)" class="p-2 bg-rose-600/20 text-rose-400 hover:bg-rose-600 hover:text-white rounded-md transition">
+                            <i data-lucide="trash-2" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+            lucide.createIcons();
+        }
+
+        // 4. Hapus Data dengan Proteksi PIN Admin
+        function hapusSiswa(rowId) {
+            const pin = prompt("Masukkan PIN Admin/Guru untuk menghapus data ini:");
+            if (!pin) return;
+
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify({ action: "hapus", rowId: rowId, pin: pin })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === "success") {
+                    alert("Data berhasil dihapus!");
+                    muatDataSiswa();
+                } else {
+                    alert("Gagal: " + data.message);
+                }
+            })
+            .catch(error => {
+                alert("Terjadi kesalahan: " + error);
+            });
+        }
+
+        // Helper Preview UI
         function playWeb(url) {
             const iframe = document.getElementById('web-preview');
             const placeholder = document.getElementById('placeholder-text');
